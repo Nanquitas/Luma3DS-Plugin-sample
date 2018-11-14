@@ -1,0 +1,15 @@
+Author: Nanquitas
+
+Version: # Plugin version
+    Major: 1
+    Minor: 0
+    Revision: 0
+
+Targets: # Low TitleId of games which are compatibles with this plugin (empty for all)
+
+Title: Sample Plugin
+
+Summary: Empty plugin, showcasing luma's plugin menu usage
+
+Description: |
+  This plugin does nothing properly speaking
