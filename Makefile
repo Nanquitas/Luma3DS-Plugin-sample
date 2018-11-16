@@ -5,9 +5,7 @@ $(error "Please set DEVKITARM in your environment. export DEVKITARM=<path to>dev
 endif
 
 TOPDIR 		?= 	$(CURDIR)
-
-include $(TOPDIR)/base_rules
-include $(TOPDIR)/3ds_rules
+include $(DEVKITARM)/3ds_rules
 
 TARGET		:= 	$(notdir $(CURDIR))
 PLGINFO		:= 	$(notdir $(TOPDIR)).plgInfo
@@ -94,6 +92,14 @@ $(OUTPUT).3gx : $(OFILES)
 #---------------------------------------------------------------------------------
 	@echo $(notdir $<)
 	@$(bin2o)
+
+#---------------------------------------------------------------------------------
+%.3gx: %.elf
+	@echo creating $(notdir $@)
+	@$(OBJCOPY) -O binary $(OUTPUT).elf $(TOPDIR)/objdump -S
+	@3gxtool.exe -s $(TOPDIR)/objdump $(TOPDIR)/$(PLGINFO) $@
+	@- rm $(TOPDIR)/objdump
+
 
 -include $(DEPENDS)
 
